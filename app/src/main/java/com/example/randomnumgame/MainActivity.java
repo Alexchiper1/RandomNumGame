@@ -2,6 +2,8 @@ package com.example.randomnumgame;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +25,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    int secretnum = (int)(Math.random() * 31);
+    int count = 0;
+
+
     public void guess(View view) {
+        EditText txt = findViewById(R.id.guess);
+        TextView highlow = findViewById(R.id.higherlower);
+        TextView numg = findViewById(R.id.numOfguess);
+
+        String input = txt.getText().toString();
+
+        if(input.isEmpty()){
+            txt.setError("Please enter a num");
+            txt.requestFocus();
+            return;
+        }
+
+        int guesses = Integer.parseInt(input);
+        count ++;
+        numg.setText("Number of Guesses: " + count);
+
+        if(guesses < secretnum){
+            highlow.setText("Higher");
+        }else if(guesses > secretnum){
+            highlow.setText("Lower");
+        }else {
+            highlow.setText("You guessed it");
+        }
     }
 
     public void playagain(View view) {
