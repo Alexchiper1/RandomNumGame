@@ -2,6 +2,7 @@ package com.example.randomnumgame;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         EditText txt = findViewById(R.id.guess);
         TextView highlow = findViewById(R.id.higherlower);
         TextView numg = findViewById(R.id.numOfguess);
+        Button again = findViewById(R.id.playagain);
 
         String input = txt.getText().toString();
 
@@ -52,9 +54,17 @@ public class MainActivity extends AppCompatActivity {
             highlow.setText("Lower");
         }else {
             highlow.setText("You guessed it");
+            again.setVisibility(View.VISIBLE);
         }
     }
 
     public void playagain(View view) {
+        EditText txt = findViewById(R.id.guess);
+        TextView highlow = findViewById(R.id.higherlower);
+        TextView numg = findViewById(R.id.numOfguess);
+
+        txt.setText("");
+        highlow.setText("Guess a number");
+        numg.setText("Number of guesses: 0");
     }
 }
