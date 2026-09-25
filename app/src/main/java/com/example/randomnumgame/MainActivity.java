@@ -46,6 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         int guesses = Integer.parseInt(input);
         count ++;
+        if(guesses < 1 || guesses > 30){
+            txt.setError("Number has to be between 1 and 30");
+            txt.requestFocus();
+            return;
+        }
         numg.setText("Number of Guesses: " + count);
 
         if(guesses < secretnum){
@@ -62,9 +67,15 @@ public class MainActivity extends AppCompatActivity {
         EditText txt = findViewById(R.id.guess);
         TextView highlow = findViewById(R.id.higherlower);
         TextView numg = findViewById(R.id.numOfguess);
+        Button again = findViewById(R.id.playagain);
+
+        int secretnum = (int)(Math.random() * 31);
+        count = 0;
 
         txt.setText("");
         highlow.setText("Guess a number");
         numg.setText("Number of guesses: 0");
+        again.setVisibility(View.INVISIBLE);
+
     }
 }
